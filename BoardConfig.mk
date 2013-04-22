@@ -27,8 +27,12 @@
 # inherit from common msm8960
 -include device/htc/msm8960-common/BoardConfigCommon.mk
 
+# inherit from the proprietary version
+-include vendor/htc/m7wls/BoardConfigVendor.mk
+
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := m7wls
+TARGET_NO_BOOTLOADER := true
 
 # Kernel
 # KernAl
@@ -100,7 +104,7 @@ WIFI_DRIVER_FW_PATH_P2P := "/system/etc/firmware/fw_bcm4335_p2p.bin"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
 
 TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_PREBUILT_KERNEL := device/htc/m7wls/recovery_kernel
+# TARGET_PREBUILT_KERNEL := device/htc/m7wls/recovery_kernel
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 TARGET_RECOVERY_INITRC := device/htc/m7wls/recovery/init.rc
 BOARD_HAS_NO_SELECT_BUTTON := true

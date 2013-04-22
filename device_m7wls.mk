@@ -22,10 +22,30 @@ $(call inherit-product, device/htc/msm8960-common/msm8960.mk)
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
-# Boot ramdisk setup
+# Ramdisk
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/ramdisk/fstab.m7wls:root/fstab.m7wls \
+    $(LOCAL_PATH)/ramdisk/init:root/init \
+    $(LOCAL_PATH)/ramdisk/init.m7wls.rc:root/init.m7wls.rc \
+    $(LOCAL_PATH)/ramdisk/init.post_mount.sh:root/init.post_mount.sh \
+    $(LOCAL_PATH)/ramdisk/init.usb.rc:root/init.usb.rc \
+    $(LOCAL_PATH)/ramdisk/init.rc:root/init.rc \
+    $(LOCAL_PATH)/ramdisk/ueventd.m7wls.rc:root/ueventd.m7wls.rc \
+
+# QCOM Boot ramdisk setup
 PRODUCT_PACKAGES += \
-    fstab.m7wls \
-    init.target.rc
+    init.qcom.sh \
+    init.qcom.usb.rc \
+    init.qcom.rc \
+    ueventd.qcom.rc
+
+# Qualcomm scripts
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/init.qcom.bt.sh:/system/etc/init.qcom.bt.sh \
+    $(LOCAL_PATH)/configs/init.qcom.fm.sh:/system/etc/init.qcom.fm.sh \
+    $(LOCAL_PATH)/configs/init.qcom.post_boot.sh:/system/etc/init.qcom.post_boot.sh \
+    $(LOCAL_PATH)/configs/init.qcom.sdio.sh:/system/etc/init.qcom.sdio.sh \
+    $(LOCAL_PATH)/configs/init.qcom.wifi.sh:/system/etc/init.qcom.wifi.sh
 
 # Custom recovery charging
 PRODUCT_COPY_FILES += \
@@ -86,6 +106,7 @@ PRODUCT_COPY_FILES += \
 # NFC Support
 PRODUCT_PACKAGES += \
     libnfc \
+    libnfc_ndef \
     libnfc_jni \
     Nfc \
     Tag \
@@ -135,7 +156,7 @@ PRODUCT_NAME := full_m7wls
 PRODUCT_DEVICE := m7wls
 
 # call the proprietary setup
-$(call inherit-product-if-exists, vendor/htc/m7wls/m7-vendor.mk)
+$(call inherit-product-if-exists, vendor/htc/m7wls/m7wls-vendor.mk)
 
 # call dalvik heap config
 $(call inherit-product-if-exists, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)

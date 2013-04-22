@@ -39,3 +39,6 @@ persist.timed.enable=true
 
 # UMS
 persist.sys.usb.config=mtp
+
+# ADB
+ro.adb.secure=0
