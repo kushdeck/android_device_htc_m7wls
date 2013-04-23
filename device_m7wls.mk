@@ -32,21 +32,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/init.rc:root/init.rc \
     $(LOCAL_PATH)/ramdisk/ueventd.m7wls.rc:root/ueventd.m7wls.rc \
 
-# QCOM Boot ramdisk setup
-PRODUCT_PACKAGES += \
-    init.qcom.sh \
-    init.qcom.usb.rc \
-    init.qcom.rc \
-    ueventd.qcom.rc
-
-# Qualcomm scripts
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/init.qcom.bt.sh:/system/etc/init.qcom.bt.sh \
-    $(LOCAL_PATH)/configs/init.qcom.fm.sh:/system/etc/init.qcom.fm.sh \
-    $(LOCAL_PATH)/configs/init.qcom.post_boot.sh:/system/etc/init.qcom.post_boot.sh \
-    $(LOCAL_PATH)/configs/init.qcom.sdio.sh:/system/etc/init.qcom.sdio.sh \
-    $(LOCAL_PATH)/configs/init.qcom.wifi.sh:/system/etc/init.qcom.wifi.sh
-
 # Custom recovery charging
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/sbin/choice_fn:recovery/root/sbin/choice_fn \
@@ -57,6 +42,9 @@ PRODUCT_COPY_FILES += \
 # Vold config
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/vold.fstab:system/etc/vold.fstab
+    
+PRODUCT_PACKAGES += \
+    libnetcmdiface
 
 # Sound configs
 PRODUCT_COPY_FILES += \
@@ -151,7 +139,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp \
+    persist.sys.usb.config=mtp,adb \
     dalvik.vm.dexopt-data-only=1
 
 # Set build date
