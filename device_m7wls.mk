@@ -28,7 +28,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/ramdisk/init:root/init \
     $(LOCAL_PATH)/ramdisk/init.m7wls.rc:root/init.m7wls.rc \
     $(LOCAL_PATH)/ramdisk/init.post_mount.sh:root/init.post_mount.sh \
-    $(LOCAL_PATH)/ramdisk/init.usb.rc:root/init.usb.rc \
+    $(LOCAL_PATH)/ramdisk/init.m7wls.usb.rc:root/init.m7wls.usb.rc \
     $(LOCAL_PATH)/ramdisk/init.rc:root/init.rc \
     $(LOCAL_PATH)/ramdisk/ueventd.m7wls.rc:root/ueventd.m7wls.rc \
 
